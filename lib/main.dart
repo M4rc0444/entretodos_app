@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
     Database db = await DBHelper.openDB();
     List<Map<String, dynamic>> result =
-        await db.rawQuery("SELECT * FROM alumnos WHERE correo = ?", [email]);
+        await db.rawQuery("SELECT * FROM alumno WHERE correo = ?", [email]);
 
     if (result.isNotEmpty) {
       String dbPassword = result[0]['contrasena'] ?? '';
@@ -134,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               backgroundColor: Colors.blue[800],
                             ),
                             child: const Text("Ingresar",
-                                style: TextStyle(fontSize: 16)),
+                                style: TextStyle(fontSize: 16, color: Colors.white)),
                           ),
                         ),
                         const SizedBox(height: 16),
@@ -187,15 +187,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<List<Map<String, dynamic>>> _getCursos() async {
     Database db = await DBHelper.openDB();
     return await db.rawQuery('''
-      SELECT c.nombre_curso AS nombre, 'Curso' AS tipo, c.fecha_inicio, c.fecha_fin, c.grupo, c.hora_inicio, c.hora_fin FROM cursos c
-      JOIN inscripciones i ON i.curso_id = c.id WHERE i.alumno_id = ?
-      UNION
-      SELECT t.nombre_taller AS nombre, 'Taller' AS tipo, t.fecha_inicio, t.fecha_fin, t.grupo, t.hora_inicio, t.hora_fin FROM talleres t
-      JOIN inscripciones i ON i.taller_id = t.id WHERE i.alumno_id = ?
-      UNION
-      SELECT d.nombre_diplomado AS nombre, 'Diplomado' AS tipo, d.fecha_inicio, d.fecha_fin, d.grupo, d.hora_inicio, d.hora_fin FROM diplomados d
-      JOIN inscripciones i ON i.diplomado_id = d.id WHERE i.alumno_id = ?
-    ''', [widget.alumnoId, widget.alumnoId, widget.alumnoId]);
+  SELECT c.nombre_curso AS nombre, 'Curso' AS tipo, c.fecha_inicio, c.fecha_fin, c.grupo, c.hora_inicio, c.hora_fin FROM curso c
+  JOIN inscripcion i ON i.curso_id = c.id WHERE i.alumno_id = ?
+  UNION
+  SELECT t.nombre_taller AS nombre, 'Taller' AS tipo, t.fecha_inicio, t.fecha_fin, t.grupo, t.hora_inicio, t.hora_fin FROM taller t
+  JOIN inscripcion i ON i.taller_id = t.id WHERE i.alumno_id = ?
+  UNION
+  SELECT d.nombre_diplomado AS nombre, 'Diplomado' AS tipo, d.fecha_inicio, d.fecha_fin, d.grupo, d.hora_inicio, d.hora_fin FROM diplomado d
+  JOIN inscripcion i ON i.diplomado_id = d.id WHERE i.alumno_id = ?
+''', [widget.alumnoId, widget.alumnoId, widget.alumnoId]);
   }
 
   Widget _buildCursos() {

@@ -14,10 +14,18 @@ dependencies:
   path_provider: ^2.1.1
   path: ^1.8.3
 
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
+  flutter_launcher_icons: ^0.14.3
+
+
+flutter_launcher_icons:
+  image_path: "assets/logo_icono.png"
+  android: true
+  ios: true
 
 flutter:
   uses-material-design: true
