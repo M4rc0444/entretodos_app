@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 import 'db_helper.dart';
+import 'splash_screen.dart';
+
 
 void main() {
-  runApp(EntretodosApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: SplashScreen(), // <- Aquí cargamos el splash
+  ));
 }
+
 
 class EntretodosApp extends StatelessWidget {
   @override

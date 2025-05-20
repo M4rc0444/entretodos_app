@@ -13,6 +13,7 @@ dependencies:
   sqflite: ^2.3.0
   path_provider: ^2.1.1
   path: ^1.8.3
+  audioplayers: ^6.4.0
 
   
 dev_dependencies:
@@ -33,3 +34,4 @@ flutter:
     - assets/entretodos.db
     - assets/logo-entretoedos.png
     - assets/fondo_instalaciones.jpg
+    - assets/intro.mp3
